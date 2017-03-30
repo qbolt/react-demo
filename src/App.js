@@ -22,7 +22,7 @@ class App extends React.Component {
     if (this.state.filter) {
       items = items.filter( item =>
         item.name.toLowerCase()
-          .includes(this.state.filter.toLowerCase()))
+          .indexOf(this.state.filter.toLowerCase()) >= 0)
     }
     return (
       <div>
