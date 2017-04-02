@@ -4,13 +4,22 @@ import ReactDOM from 'react-dom'
 class App extends React.Component {
   constructor() {
     super()
+
+    // initial state
     this.state = { items: [] }
+
+    // bindings
+    this.filter = this.filter.bind(this)
   }
 
   componentWillMount() {
-    fetch( 'http://swapi.co/api/people/?format=json')
-      .then( response => response.json() )
-      .then( ({results: items }) => this.setState({ items }))
+    console.log('fetching')
+    fetch('https://api.myjson.com/bins/qiver')
+
+      .then(response => response.json())
+      .then(data => this.setState({ items: [...data] }))
+
+    console.log('state set')
   }
 
   filter(event) {
@@ -26,7 +35,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <input type="text" onChange={this.filter.bind(this)}/>
+        <input type="text" onChange={this.filter}/>
         {items.map(item =>
           <Person key={item.name} person={item} />)}
       </div>
