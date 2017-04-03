@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 20%;
+}
+
+.main {
+}
