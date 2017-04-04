@@ -1,7 +1,20 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navbar-element {
+  padding: 0px 16px 16px 0px;
+}
+
 .sidebar {
+  height: 100vw;
   display: flex;
   flex-direction: column;
   width: 20%;
+  z-index: 1;
+  overflow-y: scroll;
 }
 
 .people {

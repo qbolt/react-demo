@@ -26,10 +26,8 @@ export class PersonComponent extends React.Component {
     return (
       <div>
         <h2>{this.state.person.name}</h2>
-        <div>
-          <h5>email: {this.state.person.email}</h5>
-          <h5>age: {this.state.person.age}</h5>
-        </div>
+        <h5>email: {this.state.person.email}</h5>
+        <h5>age: {this.state.person.age}</h5>
       </div>
     )
   }

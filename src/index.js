@@ -25,8 +25,7 @@ const startApp = (result) => {
   render(
     <Provider store={store}>
       <Router history={hashHistory}>
-        <Route path="/">
-          <IndexRoute component={App}/>
+        <Route path="/" component={App}>
           <Route path="/people" component={Sidebar}>
             <Route path="/people/:personId" component={Person} />
           </Route>
