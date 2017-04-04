@@ -1,14 +1,46 @@
-.root {
-  display: flex;
-  flex-direction: row;
-}
-
 .sidebar {
   display: flex;
   flex-direction: column;
-
   width: 20%;
 }
 
-.main {
+.people {
+  display: flex;
+  flex-direction: row;
+  margin: 8px;
+  width: 100%;
+}
+
+/* babel transpiler */
+header {
+  display: block;
+  height: 5vh;
+  overflow: auto;
+  background-color: ping;
+  color: red;
+  font-size: 28px;
+}
+
+.container {
+  height: 95vh;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+pre {
+  background-color: #f8f8f8;
+}
+
+pre, textarea {
+  width: 50%;
+  font-family: monospace;
+  font-style: 28px;
+  margin: 0;
+  padding: 10px;
+  color: #222
+}
+
+textarea:focus {
+  outline: 0
 }

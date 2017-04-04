@@ -1,26 +1,45 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-class Person extends React.Component {
+import '../app.css'
 
-  constructor() {
-    super();
+export class PersonComponent extends React.Component {
 
-    this.person = this.props
-    this.props = this.props.bind(this)
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      person: this.props.people.find(person => person.id === this.props.params.personId)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.personId !== this.props.params.personId) {
+      this.setState({
+        person: this.props.people.find(person =>
+          person.id === nextProps.params.personId)
+      })
+    }
   }
 
   render() {
     return (
       <div>
-        <h2>{this.props.person.name}</h2>
-        <div className="app">
-          <h5>email: {this.props.person.email}</h5>
-          <h5>age: {this.props.person.age}</h5>
-          <h5></h5>
-          <h5></h5>
-          <h5></h5>
+        <h2>{this.state.person.name}</h2>
+        <div>
+          <h5>email: {this.state.person.email}</h5>
+          <h5>age: {this.state.person.age}</h5>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    people: state.people
+  }
+}
+
+const Person = connect(mapStateToProps)(PersonComponent)
+export default Person

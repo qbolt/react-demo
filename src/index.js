@@ -1,9 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
 import people from './reducers/people'
+
+import Sidebar from './containers/Sidebar'
+import Babel from './containers/Babel'
+import Person from './components/Person'
 import App from './components/App'
 
 
@@ -19,7 +24,15 @@ const startApp = (result) => {
   const store = createStore(people, initialState)
   render(
     <Provider store={store}>
-      <App />
+      <Router history={hashHistory}>
+        <Route path="/">
+          <IndexRoute component={App}/>
+          <Route path="/people" component={Sidebar}>
+            <Route path="/people/:personId" component={Person} />
+          </Route>
+          <Route path="/babel" component={Babel}></Route>
+        </Route>
+      </Router>
     </Provider>,
     document.getElementById('root')
   );

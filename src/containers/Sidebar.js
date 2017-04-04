@@ -1,42 +1,37 @@
 import React from 'react'
-import { Router, Link } from 'react-router-dom'
-
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
+
+import '../app.css'
 
 class SidebarComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log('props')
-    console.log(this.props)
-    // local component state
-    this.state = {
-      searchTerm: '',
-      currentlyDisplayed: this.props.people //set local currentlyDisplayed to be redux people state
-    }
-
-    this.updateList = this.updateList.bind(this)
+    this.state = {}
   }
 
-  updateList(event) {
-    let searchTerm = event.target.value
-    if (searchTerm) {
-      let currentlyDisplayed = this.props.people.filter(person => person.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > 0)
-
-      // Set local component state
-      this.setState({
-        searchTerm,
-        currentlyDisplayed
-      })
-    }
+  filter(event) {
+    this.setState({ filter: event.target.value })
   }
 
   render() {
+    let people = this.props.people
+    if (this.state.filter) {
+      people = people.filter(person =>
+        person.name.toLowerCase()
+          .indexOf(this.state.filter.toLowerCase()) >= 0)
+    }
     return (
-      <div className="sidebar">
-        <input type="text" onChange={this.updateList}/>
-        {this.state.currentlyDisplayed.map(person =>
-          <PersonName key={person.name} person={person} />)}
+      <div className="people">
+        <div className="sidebar">
+          <input type="text" onChange={this.filter.bind(this)}/>
+          {people.map(person =>
+            <PersonName key={person.name} person={person} />)}
+        </div>
+        <div>
+          {this.props.children}
+        </div>
       </div>
     )
   }
@@ -44,9 +39,9 @@ class SidebarComponent extends React.Component {
 
 const PersonName = (props) => (
   <div>
-    {/* <Link to={`/p/${props.person.id}`}> */}
+    <Link to={`/people/${props.person.id}`}>
       <h2>{props.person.name}</h2>
-    {/* </Link> */}
+    </Link>
   </div>
 )
 

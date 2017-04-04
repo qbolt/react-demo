@@ -1,11 +1,16 @@
 import React from 'react'
 
-import Sidebar from '../containers/Sidebar'
+import Navbar from './Navbar'
+
+import '../index.css'
 
 export default class App extends React.Component {
   render() {
     return (
-      <Sidebar></Sidebar>
+      <div className="root">
+        <Navbar />
+        {this.props.children}
+      </div>
     )
   }
 }
